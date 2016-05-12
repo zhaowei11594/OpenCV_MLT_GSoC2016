@@ -1,4 +1,4 @@
-#Google Summer of Code 2016 with OpenCV
+#OpenCV - Google Summer of Code 2016 
 
 #Multi-language OpenCV Tutorials in Python, C++ and Java
 
