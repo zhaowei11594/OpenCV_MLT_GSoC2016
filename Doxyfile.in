@@ -104,7 +104,6 @@ WARN_NO_PARAMDOC       = NO
 WARN_FORMAT            = "$file:$line: $text"
 WARN_LOGFILE           =
 INPUT                  = @CMAKE_DOXYGEN_INPUT_LIST@
-INPUT                 += /home/tribta/OpenCV/opencv/doc/youtube.dox
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
 RECURSIVE              = YES
