@@ -32,16 +32,9 @@ INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
 ALIASES                = 
-ALIASES               += toggle{1}="@toggle{\1, }"
-ALIASES               += toggle{2}="@toggle{\1,\2, }"
-ALIASES               += toggle{3}="@toggle{\1,\2,\3, }"
-ALIASES               += toggle{4}="@toggle{\1,\2,\3,\4, }"
-ALIASES               += toggle{5}="@toggle{\1,\2,\3,\4,\5, }"
-ALIASES               += toggle{6}="@l{\1}@l{\2}@l{\3}@l{\4}@l{\5} @l{\6} @start_html"
-ALIASES               += l{1}="@htmlonly <span class='btn'style='display:none'>\1</span> @endhtmlonly"
-ALIASES               += start_html="@htmlinclude start.html"
-ALIASES               += next="@htmlinclude next.html"
-ALIASES               += end_toggle="@htmlinclude end.html"
+ALIASES               += addhtml{1}="@htmlonly <div class='newInnerHTML' style='display: none;'>\1</div> @endhtmlonly"
+ALIASES               += add_toggle{1}="@addhtml{\1} @htmlinclude add_toggle.html"
+ALIASES               += end_toggle_zone="@htmlinclude end_toggle.html"
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
@@ -112,9 +105,8 @@ EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       = *.inl.hpp *.impl.hpp *_detail.hpp */cudev/**/detail/*.hpp
 EXCLUDE_SYMBOLS        = cv::DataType<*> int void
 EXAMPLE_PATH           = @CMAKE_DOXYGEN_EXAMPLE_PATH@
-EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/aliases_files/start.html
-EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/aliases_files/next.html
-EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/aliases_files/end.html
+EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/add_toggle.html
+EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/end_toggle.html
 EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = YES
 IMAGE_PATH             = @CMAKE_DOXYGEN_IMAGE_PATH@
