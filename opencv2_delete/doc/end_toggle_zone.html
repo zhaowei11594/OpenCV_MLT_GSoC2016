@@ -1,0 +1,30 @@
+</div>
+<script>
+var NAME = document.getElementById('toUpdate');
+var indx = document.getElementsByClassName('btn').length-1;
+var str = document.getElementsByClassName('btn')[indx].innerHTML;
+
+// control the name that is set as label
+// substitute:' '>'_','+'>'p','#'>'sharp', other specials>'s'
+for(var j=0; j<str.length; j++){
+ var charCode = str.charCodeAt(j);
+ if(charCode>96 && charCode<123){
+ }else if(charCode>64 && charCode<91){
+ }else if(charCode>47 && charCode<58){
+ }else if(charCode == 43){
+  str = str.substr(0, j) + 'p' + str.substr(j+1);
+ }else if(charCode == 32 || charCode == 95){
+  str = str.substr(0, j) + '_' + str.substr(j+1);
+ }else if(charCode == 35){
+  str = str.substr(0, j) + 'sharp' + str.substr(j+1);
+ }else{
+  str = str.substr(0, j) + 'SpecChar' + str.substr(j+1);
+ }
+}
+
+str = 'toggleable_div label_' + str;
+NAME.className = str;
+NAME.id='done';
+
+</script>
+<div class='ended'></div>
