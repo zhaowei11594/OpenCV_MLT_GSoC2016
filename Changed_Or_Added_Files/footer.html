@@ -1,0 +1,138 @@
+<!-- HTML footer for doxygen 1.8.6-->
+<!-- start footer part -->
+<!--BEGIN GENERATE_TREEVIEW-->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    $navpath
+    <li class="footer">$generatedby
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="$relpath^doxygen.png" alt="doxygen"/></a> $doxygenversion </li>
+  </ul>
+</div>
+<!--END GENERATE_TREEVIEW-->
+<!--BEGIN !GENERATE_TREEVIEW-->
+<hr class="footer"/><address class="footer"><small>
+$generatedby &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="$relpath^doxygen.png" alt="doxygen"/>
+</a> $doxygenversion
+</small></address>
+<!--END !GENERATE_TREEVIEW-->
+<!--ADD BUTTONS -->
+<script>
+function myStringCompare(str1, str2) {
+   var value = -1;
+   var str1_tmp_char;
+   var str2_tmp_char;
+   var smaller = str1.length;
+   var int1;
+   var int2;
+   if(str2.length == smaller){  
+      value = 0;
+   }else if(str2.length < smaller){
+      smaller = str2.length;
+      value = 1;
+   }
+   for(var i=0; i<smaller; i++){
+      str1_tmp_char = str1.charAt(i);
+      str2_tmp_char = str2.charAt(i);
+      if(isNaN(str1_tmp_char) || isNaN(str2_tmp_char)){
+         if(str1_tmp_char < str2_tmp_char){
+            return -1;
+         }else if(str1_tmp_char > str2_tmp_char){    
+            return 1;  
+         }
+      }else{
+         int1 = parseInt(str1.substring(i));
+         int2 = parseInt(str2.substring(i));
+         if(int1 < int2){
+            return -1;
+         }else if(int1 > int2){
+            return 1;
+         }
+      }
+   }
+   return value;
+}
+function alphabeticOrderElements(elements) {
+   var str1;
+   var str2;
+   var n = elements.length;
+   var swapped = true;
+   while (swapped) {
+      swapped = false;
+      for(i=1; i<n; i++) {
+         str1 = elements[i-1].innerHTML;
+         str2 = elements[i].innerHTML;
+         if(myStringCompare(str1,str2)>0){
+            var tmpElement = elements[i];
+            elements[i] = elements[i-1];
+            elements[i-1] = tmpElement;
+	    swapped = true;
+         }
+      } 
+      n--;
+   }
+   return elements;
+}
+function addButton(label, buttonName) {
+   $button = $('<button/>', {
+      text: buttonName,
+      class: 'toggleable_button label_' + label,
+      click: function () {  
+         $('.toggleable_button').css({border: '2px outset', 'border-radius': '4px'});
+         $('.toggleable_button.label_' +  label).css({border: '2px inset', 'border-radius': '4px'});
+         $('.toggleable_div').css('display', 'none');
+         $('.toggleable_div.label_' + label).css('display', 'block');
+      }
+    });
+    $button.css('border', '2px outset'); 
+    $button.css('border-radius', '4px'); 
+    $button.css('margin', '2px');
+   return $button;
+}
+function buttonsToAdd($elements, $heading, $type) {
+  var count = 0;
+  if($elements.length === 0){
+     $elements = $(""+$type+":contains("+$heading.html()+")").parent().prev().prev("div");
+  }
+  $elements = alphabeticOrderElements($elements);
+  var seen = {};
+  $elements.each(function() {
+    var txt = $(this).html();
+    if (seen[txt]){
+    }else
+        $button = addButton($(this).attr('title'), $(this).html());
+        if(count == 0){
+          ($heading).append('<br><br>');
+        }
+        ($heading).append($button);
+        count++;
+        seen[txt] = true;
+  });
+  return;
+}
+$("h2").each(function() {
+   $heading = $(this);
+   $smallerHeadings = $(this).nextUntil("h2").filter("h3").add($(this).nextUntil("h2").find("h3"));
+   if($smallerHeadings.length){
+      $smallerHeadings.each(function() {
+         $elements = $(this).nextUntil("h3").filter("div.newInnerHTML");
+         buttonsToAdd($elements, $(this), "h3");
+      });
+   }else{
+      $elements = $(this).nextUntil("h2").filter("div.newInnerHTML");
+      buttonsToAdd($elements, $heading, "h2");
+   }
+});
+$(".toggleable_button").first().click();
+$clickDeafult = $('.toggleable_button.label_python').first();
+if($clickDeafult.length){
+ $clickDeafult.click();
+}
+$clickDeafult = $('.toggleable_button.label_cpp').first();
+if($clickDeafult.length){
+ $clickDeafult.click();
+}
+</script>
+</body>
+</html>

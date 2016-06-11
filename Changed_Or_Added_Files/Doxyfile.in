@@ -32,9 +32,9 @@ INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
 ALIASES                = 
-ALIASES               += addhtml{1}="@htmlonly <div class='newInnerHTML' style='display: none;'>\1</div> @endhtmlonly"
+ALIASES               += addhtml{1}="@htmlonly <div class='newInnerHTML' title='undefined' style='display: none;'>\1</div> @endhtmlonly"
 ALIASES               += add_toggle{1}="@addhtml{\1} @htmlinclude add_toggle.html"
-ALIASES               += end_toggle_zone="@htmlinclude end_toggle.html"
+ALIASES               += end_toggle="@htmlonly </div> @endhtmlonly"
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
@@ -106,7 +106,7 @@ EXCLUDE_PATTERNS       = *.inl.hpp *.impl.hpp *_detail.hpp */cudev/**/detail/*.h
 EXCLUDE_SYMBOLS        = cv::DataType<*> int void
 EXAMPLE_PATH           = @CMAKE_DOXYGEN_EXAMPLE_PATH@
 EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/add_toggle.html
-EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/end_toggle.html
+EXAMPLE_PATH          += @CMAKE_CURRENT_SOURCE_DIR@/end_toggle_zone.html
 EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = YES
 IMAGE_PATH             = @CMAKE_DOXYGEN_IMAGE_PATH@
